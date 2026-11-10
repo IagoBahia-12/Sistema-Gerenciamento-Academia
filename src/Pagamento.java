@@ -27,8 +27,8 @@ public class Pagamento {
         this.forma_pagamento = forma_pagamento;
     }
 
-    void setData_pag(LocalDate data_pag){
-        this.data_pag = data_pag;
+    void setData_pag(LocalDate data_pag1){
+        this.data_pag = data_pag1;
     }
 
     protected void registrar_pag(){}
