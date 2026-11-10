@@ -7,4 +7,8 @@ public class Pessoa {
     protected String login;
     protected String senha;
 
+    String getNome(){
+        return nome;
+    }
+
 }
