@@ -7,6 +7,30 @@ public class Pagamento {
     protected String forma_pagamento;
     protected LocalDate data_pag;
 
+    double getValor(){
+        return valor;
+    }
+
+    String getForma_pagamento(){
+        return forma_pagamento;
+    }
+
+    LocalDate getData_pag(){
+        return data_pag;
+    }
+
+    void setValor(double valor){
+        this.valor = valor;
+    }
+
+    void setForma_pagamento(String forma_pagamento){
+        this.forma_pagamento = forma_pagamento;
+    }
+
+    void setData_pag(LocalDate data_pag){
+        this.data_pag = data_pag;
+    }
+
     protected void registrar_pag(){}
 
 }
