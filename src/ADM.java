@@ -24,4 +24,14 @@ public class ADM extends Pessoa{
         }
         }
 
+    public void cancelar_matricula(Aluno aluno){
+
+        if(!aluno.esta_ativo()){
+            System.out.println("O aluno não está matriculado!");
+        }
+        else {
+            aluno.cancelar_matricula();
+        }
+        }
+
 }
