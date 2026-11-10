@@ -5,30 +5,30 @@ public class Aluno extends Pessoa{
     protected Plano tipo;
     //fazer historico de pagamento
 
-    protected boolean esta_ativo() {
+    public boolean esta_ativo() {
         return estado;
     }
 
-    int getId(){
+    public int getId(){
         return id;
     }
 
-    Plano getTipo(){
+    public Plano getTipo(){
         return tipo;
     }
 
-    void setId(int id){
+    public void setId(int id){
         this.id = id;
     }
 
-    void setEstado(boolean estado){
+    public void setEstado(boolean estado){
         this.estado = estado;
     }
 
-    void setTipo(Plano tipo){
+    public void setTipo(Plano tipo){
         this.tipo = tipo;
     }
 
-    //protected mostrar historico de pagamento
+    //public mostrar historico de pagamento
 
 }

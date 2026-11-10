@@ -22,17 +22,17 @@ public class Atividade {
         this.descricao = descricao;
     }
 
-    protected int qtd_alunos(){
+    public int qtd_alunos(){
         return alunos.size();
     }
 
-    protected void adc_aluno(Aluno aluno){
+    public void adc_aluno(Aluno aluno){
         alunos.add(aluno);
     }
 
-    protected void remove_aluno(Aluno aluno){}
+    public void remove_aluno(Aluno aluno){}
 
-    //protected String lista_alunos(){
+    //public String lista_alunos(){
        // return for
     }
 

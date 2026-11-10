@@ -7,51 +7,51 @@ public class Pessoa {
     protected String login;
     protected String senha;
 
-    String getNome(){
+    public String getNome(){
         return nome;
     }
 
-    String getCpf(){
+    public String getCpf(){
         return cpf;
     }
 
-    String getTel(){
+    public String getTel(){
         return tel;
     }
 
-    String getEmail(){
+    public String getEmail(){
         return email;
     }
 
-    String getLogin(){
+    public String getLogin(){
         return login;
     }
 
-    String getSenha(){
+    public String getSenha(){
         return senha;
     }
 
-    void setNome(String nome){
+    public void setNome(String nome){
         this.nome = nome;
     }
 
-    void setCpf(String cpf){
+    public void setCpf(String cpf){
         this.cpf = cpf;
     }
 
-    void setTel(String tel){
+    public void setTel(String tel){
         this.tel = tel;
     }
 
-    void setEmail(String email){
+    public void setEmail(String email){
         this.email = email;
     }
 
-    void setLogin(String login){
+    public void setLogin(String login){
         this.login = login;
     }
 
-    void setSenha(String senha){
+     public void setSenha(String senha){
         this.senha = senha;
     }
 

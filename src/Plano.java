@@ -8,49 +8,49 @@ public class Plano {
     protected LocalDate data_inicio;
     protected LocalDate data_final;
 
-    String getNome(){
+    public String getNome(){
         return nome;
     }
 
-    Pagamento getPag(){
+    public Pagamento getPag(){
         return pag;
     }
 
-    String getBeneficios(){
+    public String getBeneficios(){
         return beneficios;
     }
 
-    LocalDate getData_inicio(){
+    public LocalDate getData_inicio(){
         return data_inicio;
     }
 
-    LocalDate getData_final(){
+    public LocalDate getData_final(){
         return data_final;
     }
 
-    void setNome(String nome){
+    public void setNome(String nome){
         this.nome = nome;
     }
 
-    void setPag(Pagamento pag){
+    public void setPag(Pagamento pag){
         this.pag = pag;
     }
 
-    void setBeneficios(String beneficios){
+    public void setBeneficios(String beneficios){
         this.beneficios = beneficios;
     }
 
-    void setData_inicio(LocalDate data_inicio){
+    public void setData_inicio(LocalDate data_inicio){
         this.data_inicio = data_inicio;
     }
 
-    void setData_final(LocalDate data_final){
+    public void setData_final(LocalDate data_final){
         this.data_final = data_final;
     }
 
-    protected void realizar_matricula(){}
-    protected void cancelar_matricula(){}
-    protected void renovar_matricula(){}
+    public void realizar_matricula(){}
+    public void cancelar_matricula(){}
+    public void renovar_matricula(){}
 
     //minha misericordia prevalece sobre a minha ira
 }
