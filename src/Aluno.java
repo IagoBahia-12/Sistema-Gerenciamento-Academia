@@ -13,6 +13,10 @@ public class Aluno extends Pessoa{
         return id;
     }
 
+    Plano getTipo(){
+        return tipo;
+    }
+
     void setId(int id){
         this.id = id;
     }
