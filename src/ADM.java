@@ -26,6 +26,15 @@ public class ADM extends Pessoa{
         System.out.println("Aluno cadastrado com sucesso!");
     }
 
+    public Aluno buscar_aluno(String cpf){
+        for(Aluno a : alunos){
+            if(a.getCpf().equals(cpf)) {
+                return a;
+            }
+        }
+        return null;
+    }
+
     public void realizar_matricula(Aluno aluno, Plano plano){
 
         if(aluno.esta_ativo()){
