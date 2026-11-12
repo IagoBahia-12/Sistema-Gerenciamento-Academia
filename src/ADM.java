@@ -35,36 +35,58 @@ public class ADM extends Pessoa{
         return null;
     }
 
-    public void realizar_matricula(Aluno aluno, Plano plano){
+    public void realizar_matricula(String cpf, Plano plano){
 
-        if(aluno.esta_ativo()){
-            System.out.println("O aluno já está matriculado!");
+        Aluno aluno = buscar_aluno(cpf);
+
+        if(aluno == null){
+            System.out.println("Nenhum aluno foi encontrado!");
+        } else if (aluno.esta_ativo()) {
+            System.out.println("Aluno já está matriculado em um plano");
         }
-        else {
+        else{
             aluno.setTipo(plano);
             aluno.ativar_aluno();
+            System.out.println("Matrícula realizada com sucesso!");
         }
     }
 
-    public void renovar_matricula(Aluno aluno, LocalDate data_inicio, LocalDate data_final){
+    public void renovar_matricula(String cpf, LocalDate data_inicio, LocalDate data_final) {
 
-        if(!aluno.esta_ativo()){
-            System.out.println("O aluno não está matriculado!");
+        Aluno aluno = buscar_aluno(cpf);
+
+        if (aluno == null) {
+            System.out.println("Nenhum aluno foi encontrado!");
+        }
+        else if (!aluno.esta_ativo()) {
+            System.out.println("O aluno não possui matrícula ativa!");
+        }
+        else if (aluno.getTipo() == null) {
+            System.out.println("O aluno não possui um plano associado!");
         }
         else {
             aluno.getTipo().setData_inicio(data_inicio);
             aluno.getTipo().setData_final(data_final);
-        }
-        }
 
-    public void cancelar_matricula(Aluno aluno){
+            System.out.println("Matrícula renovada com sucesso!");
+        }
+    }
 
-        if(!aluno.esta_ativo()){
-            System.out.println("O aluno não está matriculado!");
+    public void cancelar_matricula(String cpf) {
+
+        Aluno aluno = buscar_aluno(cpf);
+
+        if (aluno == null) {
+            System.out.println("Nenhum aluno foi encontrado!");
+        }
+        else if (!aluno.esta_ativo()) {
+            System.out.println("O aluno não possui matrícula ativa!");
         }
         else {
             aluno.cancelar_matricula();
+
+            System.out.println("Matrícula cancelada com sucesso!");
         }
-        }
+    }
 
 }
