@@ -4,7 +4,6 @@ public class Pessoa {
     protected String cpf;
     protected String tel;
     protected String email;
-    protected String login;
     protected String senha;
 
     public String getNome(){
@@ -23,9 +22,6 @@ public class Pessoa {
         return email;
     }
 
-    public String getLogin(){
-        return login;
-    }
 
     public String getSenha(){
         return senha;
@@ -45,10 +41,6 @@ public class Pessoa {
 
     public void setEmail(String email){
         this.email = email;
-    }
-
-    public void setLogin(String login){
-        this.login = login;
     }
 
     public void setSenha(String senha){

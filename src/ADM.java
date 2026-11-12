@@ -1,6 +1,30 @@
+import java.util.ArrayList;
 import java.time.LocalDate;
 
 public class ADM extends Pessoa{
+
+    private ArrayList<Aluno> alunos = new ArrayList<>();
+
+    public void cadastrar_aluno(String nome, String cpf, String tel, String email, String senha){
+        Aluno aluno = new Aluno();
+
+        aluno.setNome(nome);
+        for(Aluno a : alunos) {
+            if (a.getCpf().equals(cpf)) {
+                System.out.println("Aluno já cadastrado!");
+                return;
+            }
+        }
+        aluno.setCpf(cpf);
+        aluno.setTel(tel);
+        aluno.setEmail(email);
+        aluno.setSenha(senha);
+        aluno.cancelar_matricula();
+
+        alunos.add(aluno);
+
+        System.out.println("Aluno cadastrado com sucesso!");
+    }
 
     public void realizar_matricula(Aluno aluno, Plano plano){
 
