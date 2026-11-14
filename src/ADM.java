@@ -89,4 +89,59 @@ public class ADM extends Pessoa{
         }
     }
 
+    public void consultar_aluno(String cpf) {
+        Aluno aluno = buscar_aluno(cpf);
+
+        if (aluno == null) {
+            System.out.println("Nenhum aluno foi encontrado!");
+            return;
+        }
+
+        System.out.println("DADOS DO ALUNO:");
+        System.out.println("Nome: " + aluno.getNome());
+        System.out.println("CPF: " + aluno.getCpf());
+        System.out.println("Telefone: " + aluno.getTel());
+        System.out.println("Email: " + aluno.getEmail());
+        System.out.println("ID: " + aluno.getId());
+        System.out.println("Estado: " + (aluno.esta_ativo() ? "Ativo" : "Inativo"));
+
+        Plano plano = aluno.getTipo();
+
+        if (plano == null) {
+            System.out.println("Plano: Sem plano!");
+        }
+
+        else {
+            System.out.println("Plano: " + plano.getNome());
+        }
+    }
+
+    public void atualizar_aluno() {
+
+    }
+
+    public void cadastrar_plano() {
+
+    }
+
+    public void consultar_plano() {
+
+    }
+
+    public void atualizar_plano() {
+
+    }
+
+    public void cadastrar_atividade() {
+
+    }
+
+    public void consultar_atividade() {
+
+    }
+
+    public void consultar_pagamento() {
+
+    }
+
 }
