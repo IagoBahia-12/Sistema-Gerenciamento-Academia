@@ -4,6 +4,7 @@ import java.time.LocalDate;
 public class ADM extends Pessoa{
 
     private ArrayList<Aluno> alunos = new ArrayList<>();
+    private ArrayList<Plano> planos = new ArrayList<>();
 
     public void cadastrar_aluno(String nome, String cpf, String tel, String email, String senha){
         Aluno aluno = new Aluno();
@@ -120,8 +121,20 @@ public class ADM extends Pessoa{
 
     }
 
-    public void cadastrar_plano() {
+    public void cadastrar_plano(String nome, Pagamento pag, String beneficios) {
+        for(Plano p : planos){
+            if(p.getNome().equalsIgnoreCase(nome)){
+                System.out.println("Plano existente!");
+                return;
+            }
+        }
 
+        Plano plano = new Plano();
+        plano.setNome(nome);
+        plano.setPag(pag);
+        plano.setBeneficios(beneficios);
+        
+        planos.add(plano);
     }
 
     public void consultar_plano() {

@@ -61,11 +61,11 @@ public class Plano {
 
     public void renovar_matricula(int meses){
         if(data_final == null){
-            System.out.println("Plano nunca matriculado.");
+            System.out.println("Plano nunca matriculado!");
             return;
         }
         if(!ativo){
-            System.out.println("Não é possivel renovar um plano cancelado.");
+            System.out.println("Não é possivel renovar um plano cancelado!");
             return;
         }
         LocalDate base;
