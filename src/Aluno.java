@@ -1,9 +1,11 @@
-public class Aluno extends Pessoa{
+import java.util.ArrayList;
+
+public class Aluno extends Pessoa {
 
     protected int id;
     protected boolean estado= true;
     protected Plano tipo;
-    //fazer historico de pagamento
+    protected ArrayList<Pagamento> historico_pagamentos = new ArrayList<>();
 
     public boolean esta_ativo() {
         return estado;
@@ -37,11 +39,21 @@ public class Aluno extends Pessoa{
         this.estado = false;
     }
 
-    public void cancelar_matricula(){
+    public void cancelar_matricula() {
         this.estado = false;
         this.tipo = null;
     }
 
-    //public mostrar historico de pagamento
+    public ArrayList<Pagamento> mostrar_historico_pagamentos() {
+        return historico_pagamentos;
+    }
 
+    public void registrar_pag(Pagamento pagamento) {
+        if (pagamento == null) {
+            System.out.println("Pagamento inválido!");
+            return;
+        }
+
+        historico_pagamentos.add(pagamento);
+    }
 }
