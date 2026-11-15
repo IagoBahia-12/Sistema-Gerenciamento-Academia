@@ -56,4 +56,5 @@ public class Aluno extends Pessoa {
 
         historico_pagamentos.add(pagamento);
     }
+
 }
