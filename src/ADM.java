@@ -117,7 +117,19 @@ public class ADM extends Pessoa{
         }
     }
 
-    public void atualizar_aluno() {
+    public void atualizar_aluno(String cpf, String nome, String tel, String email) {
+        Aluno aluno = buscar_aluno(cpf);
+
+        if (aluno == null) {
+            System.out.println("Nenhum aluno encontrado!");
+            return;
+        }
+
+        aluno.setNome(nome);
+        aluno.setTel(tel);
+        aluno.setEmail(email);
+
+        System.out.println("Dados do aluno atualizados com sucesso!");
 
     }
 
@@ -135,14 +147,48 @@ public class ADM extends Pessoa{
         plano.setBeneficios(beneficios);
         
         planos.add(plano);
+
+        System.out.println("Plano cadastrado com sucesso!");
     }
 
-    public void consultar_plano() {
-
+    public Plano buscar_plano(String nome){
+        for(Plano p : planos){
+            if(p.getNome().equalsIgnoreCase(nome)) {
+                return p;
+            }
+        }
+        return null;
     }
 
-    public void atualizar_plano() {
+    public void consultar_plano(String nome) {
+        Plano plano = buscar_plano(nome);
 
+        if (plano == null) {
+            System.out.println("Plano não encontrado!");
+            return;
+        }
+
+        System.out.println("DADOS DO PLANO");
+        System.out.println("Nome: " + plano.getNome());
+        System.out.println("Benefícios: " + plano.getBeneficios());
+        System.out.println("Data de início: " + plano.getData_inicio());
+        System.out.println("Data de encerramento: " + plano.getData_final());
+    }
+
+    public void atualizar_plano(String nome, String beneficios, LocalDate data_inicio, LocalDate data_final) {
+        Plano plano = buscar_plano(nome);
+
+        if (plano == null) {
+            System.out.println("Nenhum plano encontrado!");
+            return;
+        }
+
+        plano.setNome(nome);
+        plano.setBeneficios(beneficios);
+        plano.setData_inicio(data_inicio);
+        plano.setData_final(data_final);
+
+        System.out.println("Dados do plano atualizados com sucesso!");
     }
 
     public void cadastrar_atividade() {
