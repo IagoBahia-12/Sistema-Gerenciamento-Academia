@@ -1,7 +1,7 @@
 public class Aluno extends Pessoa{
 
     protected int id;
-    protected boolean estado;
+    protected boolean estado= true;
     protected Plano tipo;
     //fazer historico de pagamento
 
