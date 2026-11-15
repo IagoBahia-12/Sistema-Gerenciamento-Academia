@@ -5,6 +5,7 @@ public class ADM extends Pessoa{
 
     private ArrayList<Aluno> alunos = new ArrayList<>();
     private ArrayList<Plano> planos = new ArrayList<>();
+    private ArrayList<Atividade> atividades = new ArrayList<>();
 
     public void cadastrar_aluno(String nome, String cpf, String tel, String email, String senha){
         Aluno aluno = new Aluno();
@@ -191,8 +192,21 @@ public class ADM extends Pessoa{
         System.out.println("Dados do plano atualizados com sucesso!");
     }
 
-    public void cadastrar_atividade() {
+    public void cadastrar_atividade(String nome, String descrcao) {
+        for(Atividade a : atividades){
+            if(a.getNome().equalsIgnoreCase(nome)){
+                System.out.println("Aividade já existe!");
+                return;
+            }
+        }
 
+        Atividade atividade = new Atividade();
+        atividade.setNome(nome);
+        atividade.setDescricao(atividade.descricao);
+
+        atividades.add(atividade);
+
+        System.out.println("Atividade cadastrada com sucesso!");
     }
 
     public void consultar_atividade() {
