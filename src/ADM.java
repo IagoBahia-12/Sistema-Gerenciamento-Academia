@@ -8,15 +8,16 @@ public class ADM extends Pessoa{
     private ArrayList<Atividade> atividades = new ArrayList<>();
 
     public void cadastrar_aluno(String nome, String cpf, String tel, String email, String senha){
-        Aluno aluno = new Aluno();
-
-        aluno.setNome(nome);
         for(Aluno a : alunos) {
             if (a.getCpf().equals(cpf)) {
                 System.out.println("Aluno já cadastrado!");
                 return;
             }
         }
+
+        Aluno aluno = new Aluno();
+
+        aluno.setNome(nome);
         aluno.setCpf(cpf);
         aluno.setTel(tel);
         aluno.setEmail(email);
@@ -192,7 +193,7 @@ public class ADM extends Pessoa{
         System.out.println("Dados do plano atualizados com sucesso!");
     }
 
-    public void cadastrar_atividade(String nome, String descrcao) {
+    public void cadastrar_atividade(String nome, String descricao) {
         for(Atividade a : atividades){
             if(a.getNome().equalsIgnoreCase(nome)){
                 System.out.println("Aividade já existe!");
@@ -209,8 +210,26 @@ public class ADM extends Pessoa{
         System.out.println("Atividade cadastrada com sucesso!");
     }
 
-    public void consultar_atividade() {
+    public Atividade buscar_atividade(String nome) {
+        for (Atividade a : atividades) {
+            if (a.getNome().equalsIgnoreCase(nome)) {
+                return a;
+            }
+        }
+        return null;
+    }
 
+    public void consultar_atividade(String nome) {
+        Atividade atividade = buscar_atividade(nome);
+
+        if (atividade == null) {
+            System.out.println("Atividade não encontrada!");
+            return;
+        }
+
+        System.out.println("DADOS DA ATIVIDADE");
+        System.out.println("Nome: " + atividade.getNome());
+        System.out.println("Descrição: " + atividade.getDescricao());
     }
 
     public void consultar_pagamento() {
