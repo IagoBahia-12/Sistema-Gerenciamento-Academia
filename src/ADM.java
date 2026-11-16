@@ -232,8 +232,29 @@ public class ADM extends Pessoa{
         System.out.println("Descrição: " + atividade.getDescricao());
     }
 
-    public void consultar_pagamento() {
+    public void consultar_pagamento(String cpf) {
+        Aluno aluno = buscar_aluno(cpf);
 
+        if(aluno == null){
+            System.out.println("Aluno não encontrado!");
+            return;
+        }
+
+        ArrayList<Pagamento> historico = aluno.mostrar_historico_pagamentos();
+
+        if(historico.isEmpty()){
+            System.out.println("Nenhum pagamento registrado!");
+            return;
+        }
+
+        System.out.println("HISTORICO PAGAMENTO");
+        System.out.println("Aluno: " + aluno.getNome());
+
+        for(Pagamento p : historico){
+            System.out.println("Valor: R$ " + p.getValor());
+            System.out.println("Forma de pagamento: " + p.getForma_pagamento());
+            System.out.println("Data: " + p.getData_pag());
+        }
     }
 
 }
