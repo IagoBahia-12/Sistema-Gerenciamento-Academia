@@ -30,6 +30,13 @@ public class Pagamento {
         this.data_pag = data_pag1;
     }
 
-    protected void registrar_pag(){}
+    protected void registrar_pag(double valor, String forma_pagamento){
+        this.valor = valor;
+        this.forma_pagamento = forma_pagamento;
+        this.data_pag = LocalDate.now();
+
+        System.out.println("Pagamento registrado!");
+
+    }
 
 }
