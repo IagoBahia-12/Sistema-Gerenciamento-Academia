@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("alunos.txt"))) {
+                new FileReader("src/alunos.txt"))) {
 
             String linha;
 
