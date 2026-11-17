@@ -1,1 +1,1 @@
-1#João Silva#12345678900#62999999999#joao@email.com#senha_hash#false
+1#João Silva#12345678900#62999999999#joao@email.com#senha_hash#false#Anual#16-11-2026#16-11-2027
