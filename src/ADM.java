@@ -173,21 +173,24 @@ public class ADM extends Pessoa{
 
         if (aluno == null) {
             System.out.println("Nenhum aluno foi encontrado!");
+            return;
         }
-        else if (!aluno.esta_ativo()) {
+
+        if (!aluno.esta_ativo()) {
             System.out.println("O aluno não possui matrícula ativa!");
+            return;
         }
-        else {
-            for (Atividade a : atividades) {
-                a.remove_aluno(aluno);
-            }
 
-            Main.salvarAtividades(atividades);
-            aluno.cancelar_matricula();
-            Main.atualizarArquivo(alunos);
-
-            System.out.println("Matrícula cancelada com sucesso!");
+        for (Atividade a : atividades) {
+            a.remove_aluno(aluno);
         }
+
+        aluno.cancelar_matricula();
+
+        Main.atualizarArquivo(alunos);
+        Main.salvarAtividades(atividades);
+
+        System.out.println("Matrícula cancelada com sucesso!");
     }
 
     public void consultar_aluno(String cpf) {
