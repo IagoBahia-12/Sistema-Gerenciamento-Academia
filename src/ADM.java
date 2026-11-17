@@ -187,6 +187,8 @@ public class ADM extends Pessoa{
         
         planos.add(plano);
 
+        Main.salvarPlano(planos);
+
         System.out.println("Plano cadastrado com sucesso!");
     }
 
@@ -309,6 +311,10 @@ public class ADM extends Pessoa{
             System.out.println("Forma de pagamento: " + p.getForma_pagamento());
             System.out.println("Data: " + p.getData_pag());
         }
+    }
+
+    public void carregar_plano(Plano plano) {
+        planos.add(plano);
     }
 
 }
