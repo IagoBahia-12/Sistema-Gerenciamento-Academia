@@ -413,6 +413,54 @@ public class Main {
 
         do {
             System.out.println("\n===== ACADEMIA =====");
+            System.out.println("1 - Entrar como administrador");
+            System.out.println("2 - Entrar como aluno");
+            System.out.println("0 - Sair");
+
+            opcao = lerInteiro(sc, "Escolha: ");
+
+            switch (opcao) {
+                case 1: {
+                    String cpf = lerTexto(sc, "CPF: ");
+                    String senha = lerTexto(sc, "senha: ");
+
+                    if (adm.fazer_login_administrador(cpf, senha) == null) {
+                        System.out.println("CPF ou senha inválidos!");
+                    }
+                    else {
+                        menuAdm(adm, sc);
+                    }
+                    break;
+                }
+                case 2: {
+                    String cpf = lerTexto(sc, "CPF: ");
+                    String senha = lerTexto(sc, "senha: ");
+
+                    Aluno aluno = adm.fazer_login(cpf, senha);
+
+                    if (aluno != null) {
+                        menuNormal(aluno, sc);
+                    }
+                    break;
+                }
+                case 0:
+                    System.out.println("Encerrando...");
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+            }
+        }
+
+        while (opcao != 0);
+        sc.close();
+    }
+
+
+    private static void menuAdm(ADM adm, Scanner sc) {
+        int opcao;
+
+        do {
+            System.out.println("\n===== ACADEMIA =====");
             System.out.println("1 - Alunos");
             System.out.println("2 - Matrícula");
             System.out.println("3 - Planos");
@@ -566,6 +614,10 @@ public class Main {
     }
 
     public static void menuPagamentos(ADM adm, Scanner sc) {
+
+    }
+
+    public static void menuNormal(Aluno aluno, Scanner sc) {
 
     }
 
