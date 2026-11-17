@@ -66,6 +66,9 @@ public class ADM extends Pessoa{
         else{
             aluno.setTipo(plano);
             aluno.ativar_aluno();
+
+            Main.atualizarArquivo(alunos);
+
             System.out.println("Matrícula realizada com sucesso!");
         }
     }
@@ -103,6 +106,7 @@ public class ADM extends Pessoa{
         }
         else {
             aluno.cancelar_matricula();
+            Main.atualizarArquivo(alunos);
 
             System.out.println("Matrícula cancelada com sucesso!");
         }
@@ -147,8 +151,25 @@ public class ADM extends Pessoa{
         aluno.setTel(tel);
         aluno.setEmail(email);
 
+        Main.atualizarArquivo(alunos);
+
         System.out.println("Dados do aluno atualizados com sucesso!");
 
+    }
+
+    public void excluir_aluno(String cpf) {
+        Aluno aluno = buscar_aluno(cpf);
+
+        if (aluno == null) {
+            System.out.println("Nenhum aluno encontrado!");
+            return;
+        }
+
+        alunos.remove(aluno);
+
+        Main.atualizarArquivo(alunos);
+
+        System.out.println("Aluno excluído com sucesso!");
     }
 
     public void cadastrar_plano(String nome, Pagamento pag, String beneficios) {

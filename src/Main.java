@@ -16,6 +16,10 @@ public class Main {
             String linha;
 
             while ((linha = leitor.readLine()) != null) {
+                if (linha.isBlank()) {
+                    continue;
+                }
+
                 String[] campos = linha.split("#");
 
                 int id = Integer.parseInt(campos[0]);
@@ -70,6 +74,29 @@ public class Main {
 
         } catch (IOException e) {
             System.out.println("Erro ao salvar aluno: " + e.getMessage());
+        }
+    }
+
+    public static void atualizarArquivo(ArrayList<Aluno> alunos) {
+        try (BufferedWriter escritor = new BufferedWriter(
+                new FileWriter("src/alunos.txt"))) {
+
+            for (Aluno aluno : alunos) {
+                escritor.write(
+                        aluno.getId() + "#" +
+                                aluno.getNome() + "#" +
+                                aluno.getCpf() + "#" +
+                                aluno.getTel() + "#" +
+                                aluno.getEmail() + "#" +
+                                aluno.getSenha() + "#" +
+                                aluno.esta_ativo()
+                );
+
+                escritor.newLine();
+            }
+
+        } catch (IOException e) {
+            System.out.println("Erro ao atualizar arquivo: " + e.getMessage());
         }
     }
 }
