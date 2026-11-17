@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
@@ -45,6 +46,22 @@ public class Main {
                     aluno.desativar_aluno();
                 }
 
+                if (campos.length >= 10 && !campos[7].equals("-")) {
+                    Plano plano = new Plano();
+
+                    plano.setNome(campos[7]);
+
+                    if (!campos[8].equals("-")) {
+                        plano.setData_inicio(LocalDate.parse(campos[8]));
+                    }
+
+                    if (!campos[9].equals("-")) {
+                        plano.setData_final(LocalDate.parse(campos[9]));
+                    }
+
+                    aluno.setTipo(plano);
+                }
+
                 adm.carregar_aluno(aluno);
             }
 
@@ -60,6 +77,24 @@ public class Main {
         try (BufferedWriter escritor = new BufferedWriter(
                 new FileWriter("src/alunos.txt", true))) {
 
+            Plano plano = aluno.getTipo();
+
+            String nomePlano = "-";
+            String inicio = "-";
+            String fim = "-";
+
+            if (plano != null) {
+                if (plano.getNome() != null) {
+                    nomePlano = plano.getNome();
+                }
+                if (plano.getData_inicio() != null) {
+                    inicio = plano.getData_inicio().toString();
+                }
+                if (plano.getData_final() != null) {
+                    fim = plano.getData_final().toString();
+                }
+            }
+
             escritor.write(
                     aluno.getId() + "#" +
                             aluno.getNome() + "#" +
@@ -67,7 +102,10 @@ public class Main {
                             aluno.getTel() + "#" +
                             aluno.getEmail() + "#" +
                             aluno.getSenha() + "#" +
-                            aluno.esta_ativo()
+                            aluno.esta_ativo() + "#" +
+                            nomePlano + "#" +
+                            inicio + "#" +
+                            fim
             );
 
             escritor.newLine();
@@ -82,6 +120,25 @@ public class Main {
                 new FileWriter("src/alunos.txt"))) {
 
             for (Aluno aluno : alunos) {
+
+                Plano plano = aluno.getTipo();
+
+                String nomePlano = "-";
+                String inicio = "-";
+                String fim = "-";
+
+                if (plano != null) {
+                    if (plano.getNome() != null) {
+                        nomePlano = plano.getNome();
+                    }
+                    if (plano.getData_inicio() != null) {
+                        inicio = plano.getData_inicio().toString();
+                    }
+                    if (plano.getData_final() != null) {
+                        fim = plano.getData_final().toString();
+                    }
+                }
+
                 escritor.write(
                         aluno.getId() + "#" +
                                 aluno.getNome() + "#" +
