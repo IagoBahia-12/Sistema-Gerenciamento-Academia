@@ -14,7 +14,7 @@ public class Main {
         ADM adm = new ADM();
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("planos.txt"))) {
+                new FileReader("src/planos.txt"))) {
 
             String linha;
 
@@ -54,7 +54,7 @@ public class Main {
         }
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("alunos.txt"))) {
+                new FileReader("src/alunos.txt"))) {
 
             String linha;
 
@@ -119,7 +119,7 @@ public class Main {
             System.out.println("Erro ao ler o arquivo: " + e.getMessage());
         }
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("pagamentos.txt"))) {
+                new FileReader("src/pagamentos.txt"))) {
 
             String linha;
 
@@ -150,7 +150,7 @@ public class Main {
         }
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("atividades.txt"))) {
+                new FileReader("src/atividades.txt"))) {
 
             String linha;
 
@@ -183,7 +183,7 @@ public class Main {
 
     public static void salvarAluno(Aluno aluno) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("alunos.txt", true))) {
+                new FileWriter("src/alunos.txt", true))) {
 
             Plano plano = aluno.getTipo();
 
@@ -225,7 +225,7 @@ public class Main {
 
     public static void salvarPlano(ArrayList<Plano> planos) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("planos.txt"))) {
+                new FileWriter("src/planos.txt"))) {
 
             for (Plano plano : planos) {
 
@@ -266,7 +266,7 @@ public class Main {
 
     public static void salvarPagamento(String cpf, Pagamento pagamento) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("pagamentos.txt", true))) {
+                new FileWriter("src/pagamentos.txt", true))) {
 
             escritor.write(
                     cpf + "#" +
@@ -284,7 +284,7 @@ public class Main {
 
     public static void atualizarArquivo(ArrayList<Aluno> alunos) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("alunos.txt"))) {
+                new FileWriter("src/alunos.txt"))) {
 
             for (Aluno aluno : alunos) {
 
@@ -329,7 +329,7 @@ public class Main {
 
     public static void salvarAtividades(ArrayList<Atividade> atividades) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("atividades.txt"))) {
+                new FileWriter("src/atividades.txt"))) {
 
             for (Atividade atividade : atividades) {
                 String descricao = "-";
@@ -473,6 +473,15 @@ public class Main {
     }
 
     public static void menuPlanos(ADM adm, Scanner sc) {
+        int opcao;
+
+            System.out.println("\n--- PLANOS ---");
+            System.out.println("1 - Cadastrar plano");
+            System.out.println("2 - Consultar plano");
+            System.out.println("3 - Atualizar plano");
+            System.out.println("4 - Excluir plano");
+            System.out.println("5 - Listar planos");
+            System.out.println("0 - Voltar");
 
     }
 

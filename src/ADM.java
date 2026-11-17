@@ -61,6 +61,11 @@ public class ADM extends Pessoa{
     }
 
     public void listar_alunos() {
+        if (alunos.isEmpty()) {
+            System.out.println("Nenhum aluno cadastrado!");
+            return;
+        }
+
         for (Aluno a : alunos) {
             System.out.println(a.getNome());
         }
