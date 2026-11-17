@@ -12,6 +12,33 @@ public class Main {
         ADM adm = new ADM();
 
         try (BufferedReader leitor = new BufferedReader(
+                new FileReader("src/planos.txt"))) {
+
+            String linha;
+
+            while ((linha = leitor.readLine()) != null) {
+                if (linha.isBlank()) {
+                    continue;
+                }
+
+                String[] campos = linha.split("#");
+
+                Plano plano = new Plano();
+                plano.setNome(campos[0]);
+
+                if (campos.length >= 2 && !campos[1].equals("-")) {
+                    plano.setBeneficios(campos[1]);
+                }
+
+                adm.carregar_plano(plano);
+            }
+        }
+
+        catch (IOException e) {
+            System.out.println("Erro ao ler o arquivo: " + e.getMessage());
+        }
+
+        try (BufferedReader leitor = new BufferedReader(
                 new FileReader("src/alunos.txt"))) {
 
             String linha;
@@ -50,6 +77,11 @@ public class Main {
                     Plano plano = new Plano();
 
                     plano.setNome(campos[7]);
+
+                    Plano modelo = adm.buscar_plano(campos[7]);
+                    if (modelo != null) {
+                        plano.setBeneficios(modelo.getBeneficios());
+                    }
 
                     if (!campos[8].equals("-")) {
                         plano.setData_inicio(LocalDate.parse(campos[8]));
@@ -115,6 +147,26 @@ public class Main {
         }
     }
 
+    public static void salvarPlano(ArrayList<Plano> planos) {
+        try (BufferedWriter escritor = new BufferedWriter(
+                new FileWriter("src/planos.txt"))) {
+
+            for (Plano plano : planos) {
+
+                String beneficios = "-";
+                if (plano.getBeneficios() != null && !plano.getBeneficios().isBlank()) {
+                    beneficios = plano.getBeneficios();
+                }
+
+                escritor.write(plano.getNome() + "#" + beneficios);
+                escritor.newLine();
+            }
+
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar plano: " + e.getMessage());
+        }
+    }
+
     public static void atualizarArquivo(ArrayList<Aluno> alunos) {
         try (BufferedWriter escritor = new BufferedWriter(
                 new FileWriter("src/alunos.txt"))) {
@@ -146,7 +198,10 @@ public class Main {
                                 aluno.getTel() + "#" +
                                 aluno.getEmail() + "#" +
                                 aluno.getSenha() + "#" +
-                                aluno.esta_ativo()
+                                aluno.esta_ativo() + "#" +
+                                nomePlano + "#" +
+                                inicio + "#" +
+                                fim
                 );
 
                 escritor.newLine();
