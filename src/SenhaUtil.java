@@ -28,4 +28,30 @@ public class SenhaUtil {
             throw new RuntimeException("Erro ao gerar hash da senha.", e);
         }
     }
+
+    public static boolean verificarSenha(String senhaDigitada, String senhaArmazenada) {
+        try {
+            String[] partes = senhaArmazenada.split(":");
+
+            byte[] salt = Base64.getDecoder().decode(partes[0]);
+            byte[] hashArmazenado = Base64.getDecoder().decode(partes[1]);
+
+            PBEKeySpec spec = new PBEKeySpec(
+                    senhaDigitada.toCharArray(), salt, 210000, 256
+            );
+
+            SecretKeyFactory factory =
+                    SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+
+            byte[] hashDigitado = factory.generateSecret(spec).getEncoded();
+            spec.clearPassword();
+
+            return java.security.MessageDigest.isEqual(
+                    hashArmazenado, hashDigitado
+            );
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

@@ -22,7 +22,7 @@ public class ADM extends Pessoa{
         aluno.setCpf(cpf);
         aluno.setTel(tel);
         aluno.setEmail(email);
-        aluno.setSenha(senha);
+        aluno.setSenha(SenhaUtil.gerarHash(senha));
         aluno.cancelar_matricula();
 
         alunos.add(aluno);
@@ -212,6 +212,23 @@ public class ADM extends Pessoa{
         System.out.println("Benefícios: " + plano.getBeneficios());
         System.out.println("Data de início: " + plano.getData_inicio());
         System.out.println("Data de encerramento: " + plano.getData_final());
+    }
+
+    public Aluno fazer_login(String cpf, String senha) {
+        Aluno aluno = buscar_aluno(cpf);
+
+        if (aluno == null) {
+            System.out.println("Aluno não encontrado!");
+            return null;
+        }
+
+        if (!SenhaUtil.verificarSenha(senha, aluno.getSenha())) {
+            System.out.println("Senha incorreta!");
+            return null;
+        }
+
+        System.out.println("Login realizado com sucesso!");
+        return aluno;
     }
 
     public void atualizar_plano(String nome, String beneficios, LocalDate data_inicio, LocalDate data_final) {
