@@ -14,7 +14,7 @@ public class Main {
         ADM adm = new ADM();
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("src/planos.txt"))) {
+                new FileReader("planos.txt"))) {
 
             String linha;
 
@@ -54,7 +54,7 @@ public class Main {
         }
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("src/alunos.txt"))) {
+                new FileReader("alunos.txt"))) {
 
             String linha;
 
@@ -120,7 +120,7 @@ public class Main {
         }
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("src/adm.txt"))) {
+                new FileReader("adm.txt"))) {
 
             String linha;
 
@@ -147,7 +147,7 @@ public class Main {
         }
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("src/pagamentos.txt"))) {
+                new FileReader("pagamentos.txt"))) {
 
             String linha;
 
@@ -178,7 +178,7 @@ public class Main {
         }
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("src/atividades.txt"))) {
+                new FileReader("atividades.txt"))) {
 
             String linha;
 
@@ -211,7 +211,7 @@ public class Main {
 
     public static void salvarAluno(Aluno aluno) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("src/alunos.txt", true))) {
+                new FileWriter("alunos.txt", true))) {
 
             Plano plano = aluno.getTipo();
 
@@ -253,7 +253,7 @@ public class Main {
 
     public static void salvarPlano(ArrayList<Plano> planos) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("src/planos.txt"))) {
+                new FileWriter("planos.txt"))) {
 
             for (Plano plano : planos) {
 
@@ -294,7 +294,7 @@ public class Main {
 
     public static void salvarPagamento(String cpf, Pagamento pagamento) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("src/pagamentos.txt", true))) {
+                new FileWriter("pagamentos.txt", true))) {
 
             escritor.write(
                     cpf + "#" +
@@ -312,7 +312,7 @@ public class Main {
 
     public static void atualizarArquivo(ArrayList<Aluno> alunos) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("src/alunos.txt"))) {
+                new FileWriter("alunos.txt"))) {
 
             for (Aluno aluno : alunos) {
 
@@ -357,7 +357,7 @@ public class Main {
 
     public static void salvarAtividades(ArrayList<Atividade> atividades) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("src/atividades.txt"))) {
+                new FileWriter("atividades.txt"))) {
 
             for (Atividade atividade : atividades) {
                 String descricao = "-";
@@ -413,9 +413,10 @@ public class Main {
         do {
             System.out.println("\n===== ACADEMIA =====");
             System.out.println("1 - Alunos");
-            System.out.println("2 - Planos");
-            System.out.println("3 - Atividades");
-            System.out.println("4 - Pagamentos");
+            System.out.println("2 - Matrícula");
+            System.out.println("3 - Planos");
+            System.out.println("4 - Atividades");
+            System.out.println("5 - Pagamentos");
             System.out.println("0 - Sair");
 
             opcao = lerInteiro(sc, "Escolha: ");
@@ -425,12 +426,15 @@ public class Main {
                     menuAlunos(adm, sc);
                     break;
                 case 2:
-                    menuPlanos(adm, sc);
+                    menuMatricula(adm, sc);
                     break;
                 case 3:
-                    menuAtividades(adm, sc);
+                    menuPlanos(adm, sc);
                     break;
                 case 4:
+                    menuAtividades(adm, sc);
+                    break;
+                case 5:
                     menuPagamentos(adm, sc);
                     break;
                 case 0:
@@ -497,7 +501,50 @@ public class Main {
                     System.out.println("Opção inválida!");
             }
 
-        } while (opcao != 0);
+        }
+
+        while (opcao != 0);
+    }
+
+    public static void menuMatricula(ADM adm, Scanner sc) {
+        int opcao;
+
+        do {
+            System.out.println("\n--- MATRÍCULA ---");
+            System.out.println("1 - Realizar matrícula");
+            System.out.println("2 - Renovar matrícula");
+            System.out.println("3 - Cancelar matrícula");
+            System.out.println("0 - Sair");
+
+            opcao = lerInteiro(sc, "Escolha: ");
+
+            switch (opcao) {
+                case 1: {
+                    String cpf = lerTexto(sc, "CPF do aluno: ");
+                    String plano = lerTexto(sc, "Nome do plano: ");
+                    int meses = lerInteiro(sc, "Duração em meses: ");
+                    adm.realizar_matricula(cpf, plano, meses);
+                    break;
+                }
+                case 2: {
+                    String cpf = lerTexto(sc, "CPF do aluno: ");
+                    int meses = lerInteiro(sc, "Renovar por quantos meses: ");
+                    adm.renovar_matricula(cpf, meses);
+                    break;
+                }
+                case 3: {
+                    String cpf = lerTexto(sc, "CPF do aluno: ");
+                    adm.cancelar_matricula(cpf);
+                    break;
+                }
+                case 0:
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+            }
+        }
+
+        while (opcao != 0);
     }
 
     public static void menuPlanos(ADM adm, Scanner sc) {
