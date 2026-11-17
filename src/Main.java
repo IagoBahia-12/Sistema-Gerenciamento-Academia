@@ -100,7 +100,7 @@ public class Main {
                     }
 
                     if (!campos[8].equals("-")) {
-                        plano.setData_inicio(LocalDate.parse(campos[8], formato));;
+                        plano.setData_inicio(LocalDate.parse(campos[8], formato));
                     }
 
                     if (!campos[9].equals("-")) {
@@ -147,6 +147,36 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Erro ao carregar pagamentos: " + e.getMessage());
         }
+
+        try (BufferedReader leitor = new BufferedReader(
+                new FileReader("src/atividades.txt"))) {
+
+            String linha;
+
+            while ((linha = leitor.readLine()) != null) {
+                if (linha.isBlank()) continue;
+
+                String[] campos = linha.split("#");
+
+                Atividade atividade = new Atividade();
+                atividade.setNome(campos[0]);
+                atividade.setDescricao(campos[1]);
+
+                for (String cpf : campos[2].split(",")) {
+                    Aluno aluno = adm.buscar_aluno(cpf);
+                    if (aluno != null) {
+                        atividade.adc_aluno(aluno);
+                    }
+                }
+
+                adm.carregar_atividade(atividade);
+            }
+        }
+
+        catch (IOException e) {
+            System.out.println("Erro ao ler atividades: " + e.getMessage());
+        }
+
 
         adm.listar_alunos();
     }
@@ -296,5 +326,42 @@ public class Main {
             System.out.println("Erro ao atualizar arquivo: " + e.getMessage());
         }
     }
+
+    public static void salvarAtividades(ArrayList<Atividade> atividades) {
+        try (BufferedWriter escritor = new BufferedWriter(
+                new FileWriter("src/atividades.txt"))) {
+
+            for (Atividade atividade : atividades) {
+                String descricao = "-";
+                if (atividade.getDescricao() != null && !atividade.getDescricao().isBlank()) {
+                    descricao = atividade.getDescricao();
+                }
+
+                String cpfs = "-";
+                for (Aluno aluno : atividade.lista_alunos()) {
+                    if (!cpfs.isEmpty()) {
+                        cpfs += ", ";
+                    }
+
+                    if (cpfs.isEmpty()) {
+                        cpfs = "-";
+                    }
+
+                    escritor.write(atividade.getNome() + "#" +
+                                    descricao + "#" +
+                                    cpfs
+                    );
+
+                    escritor.newLine();
+                }
+            }
+        }
+
+        catch (IOException e) {
+            System.out.println("Erro ao salvar atividades: " + e.getMessage());
+        }
+    }
+
+
 }
 

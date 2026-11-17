@@ -59,15 +59,16 @@ public class Plano {
         this.ativo = false;
     }
 
-    public void renovar_matricula(int meses){
+    public boolean renovar_matricula(int meses){
         if(data_final == null){
             System.out.println("Plano nunca matriculado!");
-            return;
+            return false;
         }
         if(!ativo){
             System.out.println("Não é possivel renovar um plano cancelado!");
-            return;
+            return false;
         }
+
         LocalDate base;
 
         if(data_final.isBefore(LocalDate.now())){
@@ -79,6 +80,14 @@ public class Plano {
         this.data_inicio = base;
         this.data_final = base.plusMonths(meses);
 
+        return true;
+    }
+
+    public Plano copiar() {
+        Plano copia = new Plano();
+        copia.setNome(this.nome);
+        copia.setBeneficios(this.beneficios);
+        return copia;
     }
 
     //minha misericordia prevalece sobre a minha ira

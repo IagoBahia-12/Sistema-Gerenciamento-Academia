@@ -26,14 +26,20 @@ public class Atividade {
         return alunos.size();
     }
 
-    public void adc_aluno(Aluno aluno){
-        alunos.add(aluno);
+    public void adc_aluno(Aluno aluno) {
+        if (aluno != null && !alunos.contains(aluno)) {
+            alunos.add(aluno);
+        }
     }
 
-    public void remove_aluno(Aluno aluno){}
+    public void remove_aluno(Aluno aluno) {
+        alunos.remove(aluno);
+    }
 
-    //public String lista_alunos(){
-       // return for
+    public ArrayList<Aluno> lista_alunos() {
+        return alunos;
+    }
+
     }
 
 
