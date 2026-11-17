@@ -117,6 +117,37 @@ public class Main {
         catch (IOException e) {
             System.out.println("Erro ao ler o arquivo: " + e.getMessage());
         }
+        try (BufferedReader leitor = new BufferedReader(
+                new FileReader("src/pagamentos.txt"))) {
+
+            String linha;
+
+            while ((linha = leitor.readLine()) != null) {
+                if (linha.isBlank()) continue;
+
+                String[] campos = linha.split("#");
+
+                String cpf = campos[0];
+                double valor = Double.parseDouble(campos[1]);
+                String forma = campos[2];
+                LocalDate data = LocalDate.parse(campos[3]);
+
+                Aluno aluno = adm.buscar_aluno(cpf);
+
+                if (aluno != null) {
+                    Pagamento pagamento = new Pagamento();
+                    pagamento.setValor(valor);
+                    pagamento.setForma_pagamento(forma);
+                    pagamento.setData_pag(data);
+
+                    aluno.registrar_pag(pagamento);
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println("Erro ao carregar pagamentos: " + e.getMessage());
+        }
+
         adm.listar_alunos();
     }
 
@@ -200,6 +231,24 @@ public class Main {
 
         } catch (IOException e) {
             System.out.println("Erro ao salvar plano: " + e.getMessage());
+        }
+    }
+
+    public static void salvarPagamento(String cpf, Pagamento pagamento) {
+        try (BufferedWriter escritor = new BufferedWriter(
+                new FileWriter("src/pagamentos.txt", true))) {
+
+            escritor.write(
+                    cpf + "#" +
+                            pagamento.getValor() + "#" +
+                            pagamento.getForma_pagamento() + "#" +
+                            pagamento.getData_pag()
+            );
+
+            escritor.newLine();
+
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar pagamento: " + e.getMessage());
         }
     }
 

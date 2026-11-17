@@ -314,6 +314,25 @@ public class ADM extends Pessoa{
         }
     }
 
+    public void registrar_pagamento_aluno(
+            String cpf, double valor, String forma) {
+
+        Aluno aluno = buscar_aluno(cpf);
+
+        if (aluno == null) {
+            System.out.println("Aluno não encontrado!");
+            return;
+        }
+
+        Pagamento pagamento = new Pagamento();
+        pagamento.registrar_pag(valor, forma);
+
+        aluno.registrar_pag(pagamento);
+        Main.salvarPagamento(cpf, pagamento);
+
+        System.out.println("Pagamento registrado com sucesso!");
+    }
+
     public void registrar_pagamento_plano(
             String nomePlano, double valor, String forma) {
 
