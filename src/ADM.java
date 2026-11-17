@@ -35,6 +35,16 @@ public class ADM extends Pessoa{
         Main.salvarAluno(aluno);
     }
 
+    public void carregar_aluno(Aluno aluno) {
+        alunos.add(aluno);
+    }
+
+    public void listar_alunos() {
+        for (Aluno a : alunos) {
+            System.out.println(a.getNome());
+        }
+    }
+
     public Aluno buscar_aluno(String cpf){
         for(Aluno a : alunos){
             if(a.getCpf().equals(cpf)) {

@@ -8,7 +8,7 @@ import java.io.FileWriter;
 public class Main {
     public static void main(String[] args) {
 
-        ArrayList<Aluno> alunos = new ArrayList<>();
+        ADM adm = new ADM();
 
         try (BufferedReader leitor = new BufferedReader(
                 new FileReader("src/alunos.txt"))) {
@@ -41,16 +41,15 @@ public class Main {
                     aluno.desativar_aluno();
                 }
 
-                alunos.add(aluno);
+                adm.carregar_aluno(aluno);
             }
 
         }
         catch (IOException e) {
             System.out.println("Erro ao ler o arquivo: " + e.getMessage());
         }
-        for(Aluno a: alunos){
-            System.out.println(a.getNome());
-        }
+
+        adm.listar_alunos();
     }
 
     public static void salvarAluno(Aluno aluno) {
