@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -337,10 +338,10 @@ public class Main {
                     descricao = atividade.getDescricao();
                 }
 
-                String cpfs = "-";
+                String cpfs = "";
                 for (Aluno aluno : atividade.lista_alunos()) {
                     if (!cpfs.isEmpty()) {
-                        cpfs += ", ";
+                        cpfs += ",";
                     }
 
                     if (cpfs.isEmpty()) {
