@@ -14,7 +14,7 @@ public class Main {
         ADM adm = new ADM();
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("src/planos.txt"))) {
+                new FileReader("planos.txt"))) {
 
             String linha;
 
@@ -54,7 +54,7 @@ public class Main {
         }
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("src/alunos.txt"))) {
+                new FileReader("alunos.txt"))) {
 
             String linha;
 
@@ -119,7 +119,7 @@ public class Main {
             System.out.println("Erro ao ler o arquivo: " + e.getMessage());
         }
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("src/pagamentos.txt"))) {
+                new FileReader("pagamentos.txt"))) {
 
             String linha;
 
@@ -150,7 +150,7 @@ public class Main {
         }
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("src/atividades.txt"))) {
+                new FileReader("atividades.txt"))) {
 
             String linha;
 
@@ -178,13 +178,12 @@ public class Main {
             System.out.println("Erro ao ler atividades: " + e.getMessage());
         }
 
-
-        adm.listar_alunos();
+        menu(adm);
     }
 
     public static void salvarAluno(Aluno aluno) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("src/alunos.txt", true))) {
+                new FileWriter("alunos.txt", true))) {
 
             Plano plano = aluno.getTipo();
 
@@ -226,7 +225,7 @@ public class Main {
 
     public static void salvarPlano(ArrayList<Plano> planos) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("src/planos.txt"))) {
+                new FileWriter("planos.txt"))) {
 
             for (Plano plano : planos) {
 
@@ -267,7 +266,7 @@ public class Main {
 
     public static void salvarPagamento(String cpf, Pagamento pagamento) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("src/pagamentos.txt", true))) {
+                new FileWriter("pagamentos.txt", true))) {
 
             escritor.write(
                     cpf + "#" +
@@ -285,7 +284,7 @@ public class Main {
 
     public static void atualizarArquivo(ArrayList<Aluno> alunos) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("src/alunos.txt"))) {
+                new FileWriter("alunos.txt"))) {
 
             for (Aluno aluno : alunos) {
 
@@ -330,7 +329,7 @@ public class Main {
 
     public static void salvarAtividades(ArrayList<Atividade> atividades) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("src/atividades.txt"))) {
+                new FileWriter("atividades.txt"))) {
 
             for (Atividade atividade : atividades) {
                 String descricao = "-";
@@ -362,6 +361,129 @@ public class Main {
             System.out.println("Erro ao salvar atividades: " + e.getMessage());
         }
     }
+
+    private static String lerTexto(Scanner sc, String mensagem) {
+        System.out.print(mensagem);
+        return sc.nextLine().trim();
+    }
+
+    private static int lerInteiro(Scanner sc, String mensagem) {
+        while (true) {
+            System.out.print(mensagem);
+            try {
+                return Integer.parseInt(sc.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("Digite um número válido!");
+            }
+        }
+    }
+
+    private static void menu(ADM adm) {
+        Scanner sc = new Scanner(System.in);
+        int opcao;
+
+        do {
+            System.out.println("\n===== ACADEMIA =====");
+            System.out.println("1 - Alunos");
+            System.out.println("2 - Planos");
+            System.out.println("3 - Atividades");
+            System.out.println("4 - Pagamentos");
+            System.out.println("0 - Sair");
+
+            opcao = lerInteiro(sc, "Escolha: ");
+
+            switch (opcao) {
+                case 1:
+                    menuAlunos(adm, sc);
+                    break;
+                case 2:
+                    menuPlanos(adm, sc);
+                    break;
+                case 3:
+                    menuAtividades(adm, sc);
+                    break;
+                case 4:
+                    menuPagamentos(adm, sc);
+                    break;
+                case 0:
+                    System.out.println("Encerrando...");
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+            }
+
+        } while (opcao != 0);
+
+        sc.close();
+    }
+
+    private static void menuAlunos(ADM adm, Scanner sc) {
+        int opcao;
+
+        do {
+            System.out.println("\n--- ALUNOS ---");
+            System.out.println("1 - Cadastrar aluno");
+            System.out.println("2 - Consultar aluno");
+            System.out.println("3 - Atualizar aluno");
+            System.out.println("4 - Excluir aluno");
+            System.out.println("5 - Listar alunos");
+            System.out.println("0 - Voltar");
+
+            opcao = lerInteiro(sc, "Escolha: ");
+
+            switch (opcao) {
+                case 1: {
+                    String nome = lerTexto(sc, "Nome: ");
+                    String cpf = lerTexto(sc, "CPF: ");
+                    String tel = lerTexto(sc, "Telefone: ");
+                    String email = lerTexto(sc, "Email: ");
+                    String senha = lerTexto(sc, "Senha: ");
+                    adm.cadastrar_aluno(nome, cpf, tel, email, senha);
+                    break;
+                }
+                case 2: {
+                    String cpf = lerTexto(sc, "CPF do aluno: ");
+                    adm.consultar_aluno(cpf);
+                    break;
+                }
+                case 3: {
+                    String cpf = lerTexto(sc, "CPF do aluno: ");
+                    System.out.println("Deixe em branco o que não quiser alterar.");
+                    String nome = lerTexto(sc, "Novo nome: ");
+                    String tel = lerTexto(sc, "Novo telefone: ");
+                    String email = lerTexto(sc, "Novo email: ");
+                    adm.atualizar_aluno(cpf, nome, tel, email);
+                    break;
+                }
+                case 4: {
+                    String cpf = lerTexto(sc, "CPF do aluno: ");
+                    adm.excluir_aluno(cpf);
+                    break;
+                }
+                case 5:
+                    adm.listar_alunos();
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+            }
+
+        } while (opcao != 0);
+    }
+
+    public static void menuPlanos(ADM adm, Scanner sc) {
+
+    }
+
+    public static void menuAtividades(ADM adm, Scanner sc) {
+
+    }
+
+    public static void menuPagamentos(ADM adm, Scanner sc) {
+
+    }
+
 
 
 }
