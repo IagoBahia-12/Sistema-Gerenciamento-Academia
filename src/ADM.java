@@ -89,6 +89,7 @@ public class ADM extends Pessoa{
         else {
             aluno.getTipo().setData_inicio(data_inicio);
             aluno.getTipo().setData_final(data_final);
+            Main.atualizarArquivo(alunos);
 
             System.out.println("Matrícula renovada com sucesso!");
         }
@@ -311,6 +312,26 @@ public class ADM extends Pessoa{
             System.out.println("Forma de pagamento: " + p.getForma_pagamento());
             System.out.println("Data: " + p.getData_pag());
         }
+    }
+
+    public void registrar_pagamento_plano(
+            String nomePlano, double valor, String forma) {
+
+        Plano plano = buscar_plano(nomePlano);
+
+        if (plano == null) {
+            System.out.println("Plano não encontrado!");
+            return;
+        }
+
+        Pagamento pagamento = new Pagamento();
+        pagamento.registrar_pag(valor, forma);
+
+        plano.setPag(pagamento);
+
+        Main.salvarPlano(planos);
+
+        System.out.println("Pagamento do plano registrado com sucesso!");
     }
 
     public void carregar_plano(Plano plano) {

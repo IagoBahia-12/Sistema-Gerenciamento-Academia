@@ -1,1 +1,2 @@
-1#João Silva#12345678900#62999999999#joao@email.com#senha_hash#false#Anual#16-11-2026#16-11-2027
+1#João Silva#12345678900#62999999999#joao@email.com#senha_hash#false#Anual#2026-11-16#2027-11-16
+2#Aluno Teste Atualizado#99999999999#62977777777#atualizado@email.com#ENnEkwnAm4CsUvqsV/M+Sg==:4vT2vPc/F1gW1PqhLmSz1foIRl52uo6I+irOhUxycAg=#false#-#-#-
