@@ -225,9 +225,17 @@ public class ADM extends Pessoa{
             return;
         }
 
-        aluno.setNome(nome);
+        if(nome != null && !nome.isBlank()){
+            aluno.setNome(nome);
+        }
+
+        if(tel != null && !tel.isBlank()){
         aluno.setTel(tel);
+        }
+        
+        if(email != null && !email.isBlank()){
         aluno.setEmail(email);
+        }
 
         Main.atualizarArquivo(alunos);
 
