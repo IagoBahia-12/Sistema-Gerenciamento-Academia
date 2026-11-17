@@ -1,1 +1,1 @@
-1#João Silva#12345678900#62999999999#joao@email.com#senha_hash#true
+1#João Silva#12345678900#62999999999#joao@email.com#senha_hash#true2#Aluno Teste#11111111111#62988888888#teste@email.com#senha_hash#true2#Aluno Teste#11111111111#62988888888#teste@email.com#senha_hash#true

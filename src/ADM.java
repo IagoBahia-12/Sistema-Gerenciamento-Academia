@@ -16,6 +16,7 @@ public class ADM extends Pessoa{
         }
 
         Aluno aluno = new Aluno();
+        aluno.setId(Aluno.gerarId());
 
         aluno.setNome(nome);
         aluno.setCpf(cpf);
@@ -25,8 +26,13 @@ public class ADM extends Pessoa{
         aluno.cancelar_matricula();
 
         alunos.add(aluno);
+        salvar_aluno(aluno);
 
         System.out.println("Aluno cadastrado com sucesso!");
+    }
+
+    private void salvar_aluno(Aluno aluno) {
+        Main.salvarAluno(aluno);
     }
 
     public Aluno buscar_aluno(String cpf){

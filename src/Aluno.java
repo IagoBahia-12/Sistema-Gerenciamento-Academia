@@ -6,6 +6,7 @@ public class Aluno extends Pessoa {
     protected boolean estado= true;
     protected Plano tipo;
     protected ArrayList<Pagamento> historico_pagamentos = new ArrayList<>();
+    private static int proximoid = 1;
 
     public boolean esta_ativo() {
         return estado;
@@ -19,8 +20,16 @@ public class Aluno extends Pessoa {
         return tipo;
     }
 
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
+
+        if (id >= proximoid) {
+            proximoid = id + 1;
+        }
+    }
+
+    public static int gerarId() {
+        return proximoid++;
     }
 
     public void setEstado(boolean estado){

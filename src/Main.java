@@ -2,6 +2,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 public class Main {
     public static void main(String[] args) {
@@ -50,4 +52,26 @@ public class Main {
             System.out.println(a.getNome());
         }
     }
+
+    public static void salvarAluno(Aluno aluno) {
+        try (BufferedWriter escritor = new BufferedWriter(
+                new FileWriter("src/alunos.txt", true))) {
+
+            escritor.write(
+                    aluno.getId() + "#" +
+                            aluno.getNome() + "#" +
+                            aluno.getCpf() + "#" +
+                            aluno.getTel() + "#" +
+                            aluno.getEmail() + "#" +
+                            aluno.getSenha() + "#" +
+                            aluno.esta_ativo()
+            );
+
+            escritor.newLine();
+
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar aluno: " + e.getMessage());
+        }
+    }
 }
+
