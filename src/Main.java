@@ -360,28 +360,29 @@ public class Main {
                 new FileWriter("atividades.txt"))) {
 
             for (Atividade atividade : atividades) {
+
                 String descricao = "-";
+
                 if (atividade.getDescricao() != null && !atividade.getDescricao().isBlank()) {
                     descricao = atividade.getDescricao();
                 }
 
                 String cpfs = "";
+
                 for (Aluno aluno : atividade.lista_alunos()) {
                     if (!cpfs.isEmpty()) {
                         cpfs += ",";
                     }
+                    cpfs += aluno.getCpf();
 
-                    if (cpfs.isEmpty()) {
-                        cpfs = "-";
-                    }
-
-                    escritor.write(atividade.getNome() + "#" +
-                                    descricao + "#" +
-                                    cpfs
-                    );
-
-                    escritor.newLine();
                 }
+
+                if (cpfs.isEmpty()) {
+                    cpfs = "-";
+                }
+
+                escritor.write(atividade.getNome() + "#" + descricao + "#" + cpfs);
+                escritor.newLine();
             }
         }
 
