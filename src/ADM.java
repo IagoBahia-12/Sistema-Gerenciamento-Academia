@@ -6,6 +6,7 @@ public class ADM extends Pessoa{
     private ArrayList<Aluno> alunos = new ArrayList<>();
     private ArrayList<Plano> planos = new ArrayList<>();
     private ArrayList<Atividade> atividades = new ArrayList<>();
+    private ArrayList<ADM> administradores = new ArrayList<>();
 
     public void cadastrar_aluno(String nome, String cpf, String tel, String email, String senha){
         if (nome == null || nome.isBlank()) {
@@ -58,6 +59,33 @@ public class ADM extends Pessoa{
 
     public void carregar_aluno(Aluno aluno) {
         alunos.add(aluno);
+    }
+    public void carregar_administrador(ADM administrador) {
+        administradores.add(administrador);
+    }
+
+    public ADM buscar_administrador(String cpf) {
+        for (ADM administrador : administradores) {
+            if (administrador.getCpf().equals(cpf)) {
+                return administrador;
+            }
+        }
+
+        return null;
+    }
+
+    public ADM fazer_login_administrador(String cpf, String senha) {
+        ADM administrador = buscar_administrador(cpf);
+
+        if (administrador == null) {
+            return null;
+        }
+
+        if (!SenhaUtil.verificarSenha(senha, administrador.getSenha())) {
+            return null;
+        }
+
+        return administrador;
     }
 
     public void listar_alunos() {

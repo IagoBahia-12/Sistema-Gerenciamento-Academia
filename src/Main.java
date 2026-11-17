@@ -118,6 +118,34 @@ public class Main {
         catch (IOException e) {
             System.out.println("Erro ao ler o arquivo: " + e.getMessage());
         }
+
+        try (BufferedReader leitor = new BufferedReader(
+                new FileReader("src/adm.txt"))) {
+
+            String linha;
+
+            while ((linha = leitor.readLine()) != null) {
+                if (linha.isBlank()) {
+                    continue;
+                }
+
+                String[] campos = linha.split("#");
+
+                ADM administrador = new ADM();
+
+                administrador.setNome(campos[0]);
+                administrador.setCpf(campos[1]);
+                administrador.setTel(campos[2]);
+                administrador.setEmail(campos[3]);
+                administrador.setSenha(campos[4]);
+
+                adm.carregar_administrador(administrador);
+            }
+
+        } catch (IOException e) {
+            System.out.println("Erro ao ler o arquivo de administradores: " + e.getMessage());
+        }
+
         try (BufferedReader leitor = new BufferedReader(
                 new FileReader("src/pagamentos.txt"))) {
 
