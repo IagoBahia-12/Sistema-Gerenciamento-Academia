@@ -14,7 +14,7 @@ public class Main {
         ADM adm = new ADM();
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("planos.txt"))) {
+                new FileReader("dados/planos.txt"))) {
 
             String linha;
 
@@ -54,7 +54,7 @@ public class Main {
         }
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("alunos.txt"))) {
+                new FileReader("dados/alunos.txt"))) {
 
             String linha;
 
@@ -120,7 +120,7 @@ public class Main {
         }
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("adm.txt"))) {
+                new FileReader("dados/adm.txt"))) {
 
             String linha;
 
@@ -147,7 +147,7 @@ public class Main {
         }
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("pagamentos.txt"))) {
+                new FileReader("dados/pagamentos.txt"))) {
 
             String linha;
 
@@ -178,7 +178,7 @@ public class Main {
         }
 
         try (BufferedReader leitor = new BufferedReader(
-                new FileReader("atividades.txt"))) {
+                new FileReader("dados/atividades.txt"))) {
 
             String linha;
 
@@ -211,7 +211,7 @@ public class Main {
 
     public static void salvarAluno(Aluno aluno) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("alunos.txt", true))) {
+                new FileWriter("dados/alunos.txt", true))) {
 
             Plano plano = aluno.getTipo();
 
@@ -253,7 +253,7 @@ public class Main {
 
     public static void salvarPlano(ArrayList<Plano> planos) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("planos.txt"))) {
+                new FileWriter("dados/planos.txt"))) {
 
             for (Plano plano : planos) {
 
@@ -294,7 +294,7 @@ public class Main {
 
     public static void salvarPagamento(String cpf, Pagamento pagamento) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("pagamentos.txt", true))) {
+                new FileWriter("dados/pagamentos.txt", true))) {
 
             escritor.write(
                     cpf + "#" +
@@ -312,7 +312,7 @@ public class Main {
 
     public static void atualizarArquivo(ArrayList<Aluno> alunos) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("alunos.txt"))) {
+                new FileWriter("dados/alunos.txt"))) {
 
             for (Aluno aluno : alunos) {
 
@@ -357,7 +357,7 @@ public class Main {
 
     public static void salvarAtividades(ArrayList<Atividade> atividades) {
         try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter("atividades.txt"))) {
+                new FileWriter("dados/atividades.txt"))) {
 
             for (Atividade atividade : atividades) {
 

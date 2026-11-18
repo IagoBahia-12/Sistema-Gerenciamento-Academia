@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Aluno extends Pessoa {
 
     protected int id;
-    protected boolean estado= true;
+    protected boolean estado= false;
     protected Plano tipo;
     protected ArrayList<Pagamento> historico_pagamentos = new ArrayList<>();
     private static int proximoid = 1;
