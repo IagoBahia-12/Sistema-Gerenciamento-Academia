@@ -69,11 +69,10 @@ class PlanoTest {
         Plano plano = new Plano();
 
         plano.realizar_matricula(LocalDate.now(), 5);
-        
-        assertEquals(LocalDate.now(), plano.getData_inicio());
-
         boolean r = plano.renovar_matricula(1);
+
         assertTrue(r);
+        assertEquals(LocalDate.now(), plano.getData_inicio());
         assertEquals(LocalDate.now().plusMonths(6), plano.getData_final()); //em plus precisa por a a soma dos meses
     }
 

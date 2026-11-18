@@ -77,7 +77,7 @@ public class Plano {
             base = data_final;
         }
 
-        this.data_inicio = base;
+        //this.data_inicio = base;
         this.data_final = base.plusMonths(meses);
 
         return true;
