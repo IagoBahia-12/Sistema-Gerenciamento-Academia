@@ -27,8 +27,27 @@ class ADMTest{
         assertNull(nenc);
     }
 
-/*     @Test 
-    void retonor(){
+    @Test 
+    void deveBuscarPlanoPeloNome(){
+        ADM adm = new ADM();
 
-    } */
+        Plano pla = new Plano();
+        pla.setNome("standart");
+
+        adm.carregar_plano(pla);
+
+        Plano enq = adm.buscar_plano("standart");
+
+        assertNotNull(enq);
+        assertEquals("standart", enq.getNome());
+    }
+
+    @Test
+    void deveRetornarNuloQuandoPlanoNaoExistir() {
+        ADM adm = new ADM();
+
+        Plano encontrado = adm.buscar_plano("Inexistente");
+
+        assertNull(encontrado);
+    }
 }
